@@ -1,0 +1,103 @@
+:root {
+  --ground: #1e1b2e;      /* 게임 스플래시와 같은 남색 */
+  --deep: #151321;
+  --ink: #f4f2ec;
+  --soft: #bdb8cf;        /* 남색에서 뽑은 보조 글자색, 대비 8:1 이상 */
+  --green: #86c95f;
+  --line: rgba(134, 201, 95, 0.22);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { color-scheme: dark; scrollbar-color: #3b3657 var(--deep); }
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font: 400 1rem/1.7 Pretendard, "Noto Sans KR", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;   /* 한글이 낱말 중간에서 끊기지 않게 */
+  overflow-wrap: anywhere;
+}
+::selection { background: var(--green); color: var(--deep); }
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--green); text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+a:hover { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 2px; }
+h2, h3, .games { font-family: Nunito, Pretendard, sans-serif; }
+
+/* 첫 화면: 로고 하나와 반딧불 */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 4rem 1rem;
+  overflow: hidden;
+}
+#fireflies { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero h1 { position: relative; width: min(19rem, 62vw); }
+.hero p { position: relative; color: var(--soft); letter-spacing: 0.02em; text-align: center; }
+.hero h1, .hero p { animation: arrive 1.4s var(--ease) both; }
+.hero p { animation-delay: 0.25s; }
+@keyframes arrive {
+  from { opacity: 0; filter: blur(12px); transform: translateY(1.5rem) scale(0.96); }
+}
+
+/* 게임 */
+.game {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 7rem) 1.5rem;
+}
+.game img { width: 100%; image-rendering: pixelated; border-radius: 6px; box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.6); }
+.game h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+.game .lead { margin-top: 1rem; font-size: 1.2rem; }
+.game .note { margin-top: 0.75rem; color: var(--soft); max-width: 34ch; }
+.game .status { margin-top: 2rem; color: var(--green); font-weight: 600; }
+
+/* 바닥 */
+footer { background: var(--deep); border-top: 1px solid var(--line); }
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 2.5rem;
+}
+.cols h3 { font-size: 1rem; font-weight: 900; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+.cols ul { list-style: none; padding: 0; color: var(--soft); }
+.cols li + li { margin-top: 0.35rem; }
+.copy {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem 2rem;
+  border-top: 1px solid var(--line);
+  color: var(--soft);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* 방침 문서 */
+.doc { max-width: 42rem; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+.doc .home { display: inline-block; width: 4.5rem; margin-bottom: 3rem; }
+.doc h1 { font: 900 clamp(1.9rem, 5vw, 2.6rem)/1.2 Nunito, Pretendard, sans-serif; text-wrap: balance; }
+.doc .meta { margin-top: 1rem; color: var(--soft); }
+.doc h2 { margin: 2.75rem 0 0.75rem; font-size: 1.25rem; font-weight: 800; }
+.doc p + p, .doc ul { margin-top: 0.75rem; }
+.doc ul { padding-left: 1.2rem; }
+.doc li::marker { color: var(--green); }
+
+@media (max-width: 720px) {
+  .game, .cols { grid-template-columns: 1fr; }
+  .cols { gap: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero h1, .hero p { animation: none; }
+}
