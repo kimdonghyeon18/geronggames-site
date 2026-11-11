@@ -45,22 +45,6 @@ h2, h3, .games { font-family: Nunito, Pretendard, sans-serif; }
   from { opacity: 0; filter: blur(12px); transform: translateY(1.5rem) scale(0.96); }
 }
 
-/* 게임 */
-.game {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: center;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: clamp(3rem, 8vw, 7rem) 1.5rem;
-}
-.game img { width: 100%; image-rendering: pixelated; border-radius: 6px; box-shadow: 0 1.5rem 3rem -1rem rgba(0, 0, 0, 0.6); }
-.game h2 { font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
-.game .lead { margin-top: 1rem; font-size: 1.2rem; }
-.game .note { margin-top: 0.75rem; color: var(--soft); max-width: 34ch; }
-.game .status { margin-top: 2rem; color: var(--green); font-weight: 600; }
-
 /* 바닥 */
 footer { background: var(--deep); border-top: 1px solid var(--line); }
 .cols {
@@ -95,7 +79,7 @@ footer { background: var(--deep); border-top: 1px solid var(--line); }
 .doc li::marker { color: var(--green); }
 
 @media (max-width: 720px) {
-  .game, .cols { grid-template-columns: 1fr; }
+  .cols { grid-template-columns: 1fr; }
   .cols { gap: 2rem; }
 }
 @media (prefers-reduced-motion: reduce) {
